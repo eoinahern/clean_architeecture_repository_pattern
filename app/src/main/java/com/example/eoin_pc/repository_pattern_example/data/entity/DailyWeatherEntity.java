@@ -12,19 +12,20 @@ public class DailyWeatherEntity implements Parcelable {
     protected DailyWeatherEntity(Parcel in) {
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public int time;
+    public String summary;
+    public String icon;
+    public int sunriseTime;
+    public int sunsetTime;
+    public float moonPhase;
+    public float precipIntensity;
+    public int precipIntensityMaxTime;
+    public float precipProbability;
+    public String precipType;
+    public float humidity;
+    public float pressure;
+    public float apparentTempartureMax;
+    public int temperatureMaxTime;
 
 
 
