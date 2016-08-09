@@ -3,50 +3,63 @@ package com.example.eoin_pc.repository_pattern_example.data.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by eoin_pc on 08/08/2016.
  */
-public class DailyWeatherEntity implements Parcelable {
+public class DailyWeatherEntity {
 
 
-    protected DailyWeatherEntity(Parcel in) {
+    protected DailyWeatherEntity() {
     }
 
-    public int time;
-    public String summary;
-    public String icon;
-    public int sunriseTime;
+
+    @SerializedName("time")
+    private int time;
+
+    @SerializedName("summary")
+    private String summary;
+
+    @SerializedName("icon")
+    private String icon;
+
+
+    @SerializedName("sunriseTime")
+    private int sunriseTime;
+
+    @SerializedName("sunsetTime")
     public int sunsetTime;
-    public float moonPhase;
-    public float precipIntensity;
+
+    @SerializedName("moonPhase")
+    private float moonPhase;
+
+    @SerializedName("precipIntensity")
+    private float precipIntensity;
+
+    @SerializedName("precipIntensityMaxTime")
     public int precipIntensityMaxTime;
-    public float precipProbability;
-    public String precipType;
-    public float humidity;
+
+    @SerializedName("precipProbability")
+    private float precipProbability;
+
+    @SerializedName("precipType")
+    private String precipType;
+
+
+    @SerializedName("humidity")
+    private float humidity;
+
+    @SerializedName("pressure")
     public float pressure;
-    public float apparentTempartureMax;
+
+
+    @SerializedName("apparentTemperatureMax")
+    public float apparentTempertureMax;
+
+    @SerializedName("temperatureMaxTime")
     public int temperatureMaxTime;
 
 
 
-    public static final Creator<DailyWeatherEntity> CREATOR = new Creator<DailyWeatherEntity>() {
-        @Override
-        public DailyWeatherEntity createFromParcel(Parcel in) {
-            return new DailyWeatherEntity(in);
-        }
-
-        @Override
-        public DailyWeatherEntity[] newArray(int size) {
-            return new DailyWeatherEntity[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-    }
 }

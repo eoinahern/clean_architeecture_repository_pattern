@@ -15,7 +15,7 @@ public class WeatherDataRepository implements WeatherRepository{
 
 
     public WeatherDataRepository() {
-        weatherfactory = new WeatherDataStoreFactory();
+        //weatherfactory = new WeatherDataStoreFactory();
     }
 
     @Override
@@ -24,14 +24,13 @@ public class WeatherDataRepository implements WeatherRepository{
         WeatherDataStore datastore = weatherfactory.getDataStore();
         //return datastore.getWeatherList();
 
+
+
     }
 
     @Override
     public void saveDailyWeather(List<DailyWeather> dailyw) {
         WeatherDataStore datastore  =  weatherfactory.getDiskDataStore();
 
-
-        //need to map data. may be unnecesary step!!
-        // datastore.saveWeatherData(dailyw);
     }
 }

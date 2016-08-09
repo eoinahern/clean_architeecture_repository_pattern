@@ -1,16 +1,20 @@
 package com.example.eoin_pc.repository_pattern_example.data.repository.datasource;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 /**
  * Created by eoin_pc on 08/08/2016.
  */
 public class WeatherDataStoreFactory {
 
 
+    private Context cont;
 
-
-    public WeatherDataStoreFactory()
+    public WeatherDataStoreFactory(Context context)
     {
-
+        cont = context.getApplicationContext();
     }
 
 
@@ -46,7 +50,10 @@ public class WeatherDataStoreFactory {
 
     private boolean checkConnected()
     {
-        return false;
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) cont.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
 
