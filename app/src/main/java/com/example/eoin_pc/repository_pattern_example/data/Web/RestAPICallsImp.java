@@ -29,7 +29,7 @@ public class RestAPICallsImp  {
     }
 
 
-    public void getWeatherList()
+    public Call getWeatherList()
     {
         Call call =  restapicalls.getDailyWeather(53.3441,-6.2675);
 
@@ -56,6 +56,9 @@ public class RestAPICallsImp  {
                 //return failure
             }
         });
+
+
+        return call;
     }
 
 }

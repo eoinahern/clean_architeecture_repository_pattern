@@ -13,8 +13,6 @@ import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEn
  */
 public class WeatherDBHelper extends SQLiteOpenHelper {
 
-
-
     private static WeatherDBHelper dbhelper;
 
     public static final String DATABASE_NAME = "weather.db";
@@ -24,29 +22,25 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
     public static final String WEATHER_COL_LAT = "latitude";
     public static final String WEATHER_COL_LONG = "longitude";
     public static final String WEATHER_COLUMN_TIME = "time";
+    public static final String WEATHER_COLUMN_SUMMARY = "summary";
+    public static final String WEATHER_COLUMN_ICON = "icon";
+    public static final String WEATHER_COLUMN_SUNRISETIME = "sunrisetime";
+    public static final String WEATHER_COLUMN_SUNSETTIME = "sunsettime";
+    public static final String WEATHER_COLUMN_MOONPHASE = "moonphase";
+    public static final String WEATHER_COLUMN_PRECIPINTENSITY = "precipintensity";
+    public static final String WEATHER_COLUMN_PRECIPINTENSITYMAXTIME = "precipintensitymaxtime";
+    public static final String WEATHER_COLUMN_PRECIPPROBABILITY = "precipprobability";
+    public static final String WEATHER_COLUMN_PRECIPTYPE = "preciptype";
+    public static final String WEATHER_COLUMN_HUMIDITY = "humidity";
+    public static final String WEATHER_COLUMN_PRESSURE = "pressure";
+    public static final String WEATHER_COLUMN_APPARENTTEMPMAX = "apparenttemperaturemax";
+    public static final String WEATHER_COLUMN_TEMPERATUREMAXTIME = "temperaturemaxtime";
 
-
-    //add all columns!!!
-   /* public static final String PERSON_COLUMN_TIME = "time";
-    public static final String PERSON_COLUMN_GENDER = "gender";
-    public static final String PERSON_COLUMN_AGE = "age";
-    public static final String PERSON_COLUMN_ID = "_id";
-    public static final String PERSON_COLUMN_TIME = "time";
-    public static final String PERSON_COLUMN_GENDER = "gender";
-    public static final String PERSON_COLUMN_AGE = "age";public static final String PERSON_COLUMN_ID = "_id";
-    public static final String PERSON_COLUMN_TIME = "time";
-    public static final String PERSON_COLUMN_GENDER = "gender";
-    public static final String PERSON_COLUMN_AGE = "age";
-    public static final String PERSON_COLUMN_ID = "_id";
-    public static final String PERSON_COLUMN_TIME = "time";
-    public static final String PERSON_COLUMN_GENDER = "gender";
-    public static final String PERSON_COLUMN_AGE = "age";*/
 
 
     private  WeatherDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
 
 
     public static WeatherDBHelper getHelper(Context cont)
@@ -68,8 +62,19 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
                 WEATHER_COL_LAT + " REAL, " +
                 WEATHER_COL_LONG + " REAL, " +
                 WEATHER_COLUMN_TIME + " INTEGER, " +
-                PERSON_COLUMN_GENDER + " TEXT, " +
-                PERSON_COLUMN_AGE + " INTEGER)"
+                WEATHER_COLUMN_SUMMARY + " TEXT, " +
+                WEATHER_COLUMN_ICON + " TEXT, " +
+                WEATHER_COLUMN_SUNRISETIME + " INTEGER, " +
+                WEATHER_COLUMN_SUNSETTIME + " INTEGER, " +
+                WEATHER_COLUMN_MOONPHASE + " REAL, " +
+                WEATHER_COLUMN_PRECIPINTENSITY + " REAL, " +
+                WEATHER_COLUMN_PRECIPINTENSITYMAXTIME + " INTEGER, " +
+                WEATHER_COLUMN_PRECIPPROBABILITY + " REAL, " +
+                WEATHER_COLUMN_PRECIPTYPE + " TEXT, " +
+                WEATHER_COLUMN_HUMIDITY +  " REAL, " +
+                WEATHER_COLUMN_PRESSURE +  " REAL, " +
+                WEATHER_COLUMN_APPARENTTEMPMAX +  " REAL, " +
+                WEATHER_COLUMN_TEMPERATUREMAXTIME + " INTEGER)"
         );
     }
 
