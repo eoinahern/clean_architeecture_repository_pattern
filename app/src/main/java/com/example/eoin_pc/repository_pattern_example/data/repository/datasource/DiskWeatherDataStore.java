@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class DiskWeatherDataStore implements WeatherDataStore {
 
-
+    //mapper required here!!!
 
     @Override
     public List<DailyWeatherEntity> getWeatherList() {

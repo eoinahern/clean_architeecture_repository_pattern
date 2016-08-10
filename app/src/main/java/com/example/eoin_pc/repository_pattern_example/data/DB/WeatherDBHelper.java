@@ -19,8 +19,6 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String WEATHER_TABLE_NAME = "weather";
     public static final String WEATHER_COLUMN_ID = "_id";
-    public static final String WEATHER_COL_LAT = "latitude";
-    public static final String WEATHER_COL_LONG = "longitude";
     public static final String WEATHER_COLUMN_TIME = "time";
     public static final String WEATHER_COLUMN_SUMMARY = "summary";
     public static final String WEATHER_COLUMN_ICON = "icon";
@@ -53,14 +51,11 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
         return dbhelper;
     }
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("CREATE TABLE " + WEATHER_TABLE_NAME + "(" +
                 WEATHER_COLUMN_ID + " INTEGER PRIMARY KEY, " +
-                WEATHER_COL_LAT + " REAL, " +
-                WEATHER_COL_LONG + " REAL, " +
                 WEATHER_COLUMN_TIME + " INTEGER, " +
                 WEATHER_COLUMN_SUMMARY + " TEXT, " +
                 WEATHER_COLUMN_ICON + " TEXT, " +
@@ -87,28 +82,54 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
     public synchronized boolean insertWeather(DailyWeatherEntity weather) {
 
         SQLiteDatabase db = getWritableDatabase();
-        ContentValues contvals = new ContentValues();
-        //contvals.put(PERSON_COLUMN_TIME, );
-        //contvals.put(PERSON_COLUMN_GENDER, gender);
-        //contvals.put(PERSON_COLUMN_AGE, age);
-        //db.insert(PERSON_TABLE_NAME, null, contvals);
+        ContentValues contvals = createContentVals(weather);
+        db.insert(WEATHER_TABLE_NAME, null, contvals);
         return true;
     }
 
 
-
-    public synchronized Cursor getWeather(double lat, double longit )
+    private ContentValues createContentVals(DailyWeatherEntity dailyw)
     {
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM " + WEATHER_TABLE_NAME + " WHERE " + WEATHER_COL_LAT + "= ?",  new String[]{Double.toString(lat)} );
-        return res;
+
+        ContentValues contvals = new ContentValues();
+        contvals.put(WEATHER_COLUMN_TIME, dailyw.getTime());
+        contvals.put(WEATHER_COLUMN_SUMMARY, dailyw.getSummary() );
+        contvals.put(WEATHER_COLUMN_SUNRISETIME, dailyw.getSunriseTime());
+        contvals.put(WEATHER_COLUMN_SUNSETTIME, dailyw.getSunsetTime());
+        contvals.put( WEATHER_COLUMN_MOONPHASE, dailyw.getMoonPhase());
+        contvals.put(WEATHER_COLUMN_PRECIPINTENSITY , dailyw.getPrecipIntensity());
+        contvals.put(WEATHER_COLUMN_PRECIPINTENSITYMAXTIME, dailyw.getPrecipIntensityMaxTime() );
+        contvals.put(WEATHER_COLUMN_PRECIPPROBABILITY, dailyw.getPrecipProbability());
+        contvals.put( WEATHER_COLUMN_PRECIPTYPE, dailyw.getPrecipType());
+        contvals.put( WEATHER_COLUMN_HUMIDITY, dailyw.getHumidity());
+        contvals.put(WEATHER_COLUMN_PRESSURE, dailyw.getPressure());
+        contvals.put(WEATHER_COLUMN_APPARENTTEMPMAX, dailyw.getApparentTempertureMax());
+        contvals.put( WEATHER_COLUMN_TEMPERATUREMAXTIME, dailyw.getTemperatureMaxTime());
+
+        return contvals;
     }
 
+    //for demo purposes i wont use latlong!!!
+    /*public synchronized Cursor getWeather(double lat, double longit)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + WEATHER_TABLE_NAME + " WHERE " + WEATHER_COL_LAT + "= ?" + " AND " + WEATHER_COL_LONG + "= ?" ,
+                new String[]{Double.toString(lat), Double.toString(longit) });
+        return res;
+    }*/
 
-    public Cursor getAllWesather()
+
+    public Cursor getAllWeather()
     {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery( "SELECT * FROM " + WEATHER_TABLE_NAME, null );
         return res;
+    }
+
+    public boolean deleteAll()
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        db.rawQuery( "DELETE * FROM " + WEATHER_TABLE_NAME, null );
+        return true;
     }
 }

@@ -24,9 +24,12 @@ public class WeatherDataRepository implements WeatherRepository{
         WeatherDataStore datastore = weatherfactory.getDataStore();
         //return datastore.getWeatherList();
 
-
-
     }
+
+    //possibly dont need to expose to the domain layer
+    //as weather is only stored when initially retrieved
+    //from the restAPI.
+
 
     @Override
     public void saveDailyWeather(List<DailyWeather> dailyw) {
