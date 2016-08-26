@@ -5,6 +5,8 @@ import com.example.eoin_pc.repository_pattern_example.domain.WeatherRepository;
 
 import java.util.List;
 
+import rx.Observable;
+
 /**
  * Created by eoin_pc on 08/08/2016.
  */
@@ -19,7 +21,7 @@ public class WeatherDataRepository implements WeatherRepository{
     }
 
     @Override
-    public List<DailyWeather> getDailyWeather() {
+    public Observable<List<DailyWeather>> getDailyWeather() {
 
         WeatherDataStore datastore = weatherfactory.getDataStore();
         //return datastore.getWeatherList();
@@ -32,7 +34,7 @@ public class WeatherDataRepository implements WeatherRepository{
 
 
     @Override
-    public void saveDailyWeather(List<DailyWeather> dailyw) {
+    public void saveDailyWeather(Observable<List<DailyWeather>> dailyw) {
         WeatherDataStore datastore  =  weatherfactory.getDiskDataStore();
 
     }

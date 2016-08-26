@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Repository_Pattern_example.iml" filepath="$PROJECT_DIR$/Repository_Pattern_example.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/clean_architeecture_repository_pattern.iml" filepath="$PROJECT_DIR$/clean_architeecture_repository_pattern.iml" />
     </modules>
   </component>
 </project>

@@ -4,11 +4,13 @@ import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEn
 
 import java.util.List;
 
+import rx.Observable;
+
 /**
  * Created by eoin_pc on 08/08/2016.
  */
 public interface WeatherDataStore {
 
-        List<DailyWeatherEntity> getWeatherList();
-        void saveWeatherData(List<DailyWeatherEntity> dailyw);
+        Observable<List<DailyWeatherEntity>> getWeatherList();
+        void saveWeatherData(Observable<List<DailyWeatherEntity>> dailyw);
 }
