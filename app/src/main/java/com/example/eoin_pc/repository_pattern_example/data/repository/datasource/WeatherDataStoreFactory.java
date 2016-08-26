@@ -9,7 +9,7 @@ import android.net.NetworkInfo;
  */
 public class WeatherDataStoreFactory {
 
-
+    //injects cont into factory in example ive seen!!!
     private Context cont;
 
     public WeatherDataStoreFactory(Context context)
@@ -30,7 +30,7 @@ public class WeatherDataStoreFactory {
         if(checkConnected() == true)
             wdatastore = new CloudWeatherDataStore();
         else
-            wdatastore = new DiskWeatherDataStore();
+            wdatastore = new DiskWeatherDataStore(cont);
 
         return wdatastore;
     }
@@ -39,7 +39,7 @@ public class WeatherDataStoreFactory {
 
     public WeatherDataStore getDiskDataStore()
     {
-        return new DiskWeatherDataStore();
+        return new DiskWeatherDataStore(cont);
     }
 
 

@@ -1,5 +1,9 @@
 package com.example.eoin_pc.repository_pattern_example.data.repository.datasource;
 
+import android.content.Context;
+
+import com.example.eoin_pc.repository_pattern_example.data.DB.DBQueryExecutor;
+import com.example.eoin_pc.repository_pattern_example.data.DB.WeatherDBHelper;
 import com.example.eoin_pc.repository_pattern_example.data.Web.RestAPICalls;
 import com.example.eoin_pc.repository_pattern_example.data.Web.RestAPICallsImp;
 import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntity;
@@ -16,16 +20,16 @@ public class DiskWeatherDataStore implements WeatherDataStore {
     //mapper required here!!!
 
 
+    private DBQueryExecutor dbQueryExecutor;
 
-    public DiskWeatherDataStore()
+    public DiskWeatherDataStore(Context contin)
     {
-
-
+        dbQueryExecutor = new DBQueryExecutor(contin);
     }
 
     @Override
     public Observable<List<DailyWeatherEntity>> getWeatherList() {
-        return null;
+       return dbQueryExecutor.getDailyWeatherList();
     }
 
     @Override
