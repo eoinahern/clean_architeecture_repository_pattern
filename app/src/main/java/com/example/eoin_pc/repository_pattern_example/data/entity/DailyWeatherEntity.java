@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName;
 public class DailyWeatherEntity {
 
 
-    protected DailyWeatherEntity() {
+    public DailyWeatherEntity() {
     }
 
     public String getSummary() {

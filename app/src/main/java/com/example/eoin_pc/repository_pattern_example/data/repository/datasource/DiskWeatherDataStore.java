@@ -19,7 +19,6 @@ public class DiskWeatherDataStore implements WeatherDataStore {
 
     //mapper required here!!!
 
-
     private DBQueryExecutor dbQueryExecutor;
 
     public DiskWeatherDataStore(Context contin)

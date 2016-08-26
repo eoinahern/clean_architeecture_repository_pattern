@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntity;
 
+import java.util.List;
+
 /**
  * Created by eoin_pc on 08/08/2016.
  */
@@ -88,6 +90,27 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
     }
 
 
+    public synchronized void insertList(List<DailyWeatherEntity> dlist)
+    {
+       SQLiteDatabase db = getWritableDatabase();
+
+        db.beginTransaction();
+        try
+        {
+            for(DailyWeatherEntity dw : dlist)
+            {
+                ContentValues ct = createContentVals(dw);
+                db.insert(WEATHER_TABLE_NAME, null, ct);
+            }
+            db.setTransactionSuccessful();
+        }
+        finally
+        {
+            db.endTransaction();
+        }
+    }
+
+
     private ContentValues createContentVals(DailyWeatherEntity dailyw)
     {
 
@@ -108,6 +131,8 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
 
         return contvals;
     }
+
+
 
     public Cursor getAllWeather()
     {

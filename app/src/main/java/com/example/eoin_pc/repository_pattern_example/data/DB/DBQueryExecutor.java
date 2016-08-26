@@ -1,6 +1,10 @@
 package com.example.eoin_pc.repository_pattern_example.data.DB;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.util.Log;
 
 import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntity;
 import com.example.eoin_pc.repository_pattern_example.data.entity.mapper.CursorEntityMapper;
@@ -27,11 +31,28 @@ public class DBQueryExecutor {
     }
 
 
-
     public Observable<List<DailyWeatherEntity>> getDailyWeatherList()
     {
         return Observable.create(subscriber -> {
-            //do stuff here!!!!
+
+            try
+            {
+                Cursor cursor = wdbhelper.getAllWeather();
+                List<DailyWeatherEntity> templist = cursormapper.converttoWeatherList(cursor);
+
+                if(templist.size() > 0)
+                {
+                    subscriber.onNext(cursormapper.converttoWeatherList(cursor));
+                    subscriber.onCompleted();
+                }
+
+                subscriber.onError(new Resources.NotFoundException());
+            }
+           catch(Exception e)
+           {
+               Log.e("error reading db", "error");
+              subscriber.onError(new SQLException());
+           }
         });
     }
 
