@@ -1,5 +1,7 @@
 package com.example.eoin_pc.repository_pattern_example.domain;
 
+import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntity;
+
 import java.util.List;
 
 import rx.Observable;
@@ -10,5 +12,5 @@ import rx.Observable;
 public interface WeatherRepository {
 
     Observable<List<DailyWeather>> getDailyWeather();
-    void saveDailyWeather(Observable<List<DailyWeather>> dailyw);
+    void saveDailyWeather(Observable<List<DailyWeatherEntity>> dailyw);
 }

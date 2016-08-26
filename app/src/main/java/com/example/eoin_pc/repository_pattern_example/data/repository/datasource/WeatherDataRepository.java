@@ -1,5 +1,7 @@
 package com.example.eoin_pc.repository_pattern_example.data.repository.datasource;
 
+import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntity;
+import com.example.eoin_pc.repository_pattern_example.data.entity.mapper.WeatherMapper;
 import com.example.eoin_pc.repository_pattern_example.domain.DailyWeather;
 import com.example.eoin_pc.repository_pattern_example.domain.WeatherRepository;
 
@@ -14,18 +16,23 @@ public class WeatherDataRepository implements WeatherRepository{
 
 
     private WeatherDataStoreFactory weatherfactory;
+    private WeatherMapper weatherMapper;
 
 
     public WeatherDataRepository() {
         //weatherfactory = new WeatherDataStoreFactory();
+        weatherMapper = new WeatherMapper();
     }
 
     @Override
     public Observable<List<DailyWeather>> getDailyWeather() {
-
         WeatherDataStore datastore = weatherfactory.getDataStore();
-        //return datastore.getWeatherList();
+        Observable<List<DailyWeatherEntity>> obs = datastore.getWeatherList();
 
+        if(datastore instanceof CloudWeatherDataStore)
+            saveDailyWeather(obs);
+
+        return obs.map(this.weatherMapper::transform);
     }
 
     //possibly dont need to expose to the domain layer
@@ -34,8 +41,9 @@ public class WeatherDataRepository implements WeatherRepository{
 
 
     @Override
-    public void saveDailyWeather(Observable<List<DailyWeather>> dailyw) {
+    public void saveDailyWeather(Observable<List<DailyWeatherEntity>> dailyw) {
         WeatherDataStore datastore  =  weatherfactory.getDiskDataStore();
+        datastore.saveWeatherData(dailyw);
 
     }
 }

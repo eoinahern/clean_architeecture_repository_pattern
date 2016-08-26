@@ -1,15 +1,19 @@
 package com.example.eoin_pc.repository_pattern_example.data.Web;
 
+import android.content.res.Resources;
 import android.util.Log;
 
 import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntity;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
 
 public class RestAPICallsImp  {
 
@@ -29,36 +33,30 @@ public class RestAPICallsImp  {
     }
 
 
-    public Call getWeatherList()
-    {
-        Call call =  restapicalls.getDailyWeather(53.3441,-6.2675);
+    public Observable<List<DailyWeatherEntity>> getWeatherList() {
 
+        Call call = restapicalls.getDailyWeather(53.3441, -6.2675);
+        return Observable.create(subscriber -> {
 
-        call.enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-
-
-                if(response.isSuccessful())
-                {
-                    //send data back
-                    ArrayList<DailyWeatherEntity> weather = (ArrayList<DailyWeatherEntity>) response.body();
-                    Log.d("weather", weather.toString());
+            call.enqueue(new Callback() {
+                @Override
+                public void onResponse(Call call, Response response) {
+                    if (response.isSuccessful()) {
+                        subscriber.onNext((List<DailyWeatherEntity>) response.body());
+                        subscriber.onCompleted();
+                    } else {
+                        subscriber.onError(new Resources.NotFoundException());
+                    }
                 }
-                else
-                {
-                   //failed message!!!
-                }
-            }
 
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                //return failure
-            }
+                @Override
+                public void onFailure(Call call, Throwable t) {
+                    subscriber.onError(new Resources.NotFoundException());
+                }
+            });
         });
 
 
-        return call;
     }
 
 }

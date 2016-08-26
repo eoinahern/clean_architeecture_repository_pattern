@@ -109,16 +109,6 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
         return contvals;
     }
 
-    //for demo purposes i wont use latlong!!!
-    /*public synchronized Cursor getWeather(double lat, double longit)
-    {
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM " + WEATHER_TABLE_NAME + " WHERE " + WEATHER_COL_LAT + "= ?" + " AND " + WEATHER_COL_LONG + "= ?" ,
-                new String[]{Double.toString(lat), Double.toString(longit) });
-        return res;
-    }*/
-
-
     public Cursor getAllWeather()
     {
         SQLiteDatabase db = this.getReadableDatabase();

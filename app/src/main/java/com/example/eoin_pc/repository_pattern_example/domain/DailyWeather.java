@@ -5,12 +5,14 @@ package com.example.eoin_pc.repository_pattern_example.domain;
  */
 public class DailyWeather {
 
+
+    //DailyWeather doesnt posesses a moonphase. for demo puroses.!!
+
     private int time;
     private String summary;
     private String icon;
     private int sunriseTime;
     private int sunsetTime;
-    private float moonPhase;
     private float precipIntensity;
     private int precipIntensityMaxTime;
     private float precipProbability;
@@ -52,13 +54,6 @@ public class DailyWeather {
         this.sunsetTime = sunsetTime;
     }
 
-    public float getMoonPhase() {
-        return moonPhase;
-    }
-
-    public void setMoonPhase(float moonPhase) {
-        this.moonPhase = moonPhase;
-    }
 
     public float getPrecipIntensity() {
         return precipIntensity;
