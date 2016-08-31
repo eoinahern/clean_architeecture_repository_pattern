@@ -7,6 +7,8 @@ import com.example.eoin_pc.repository_pattern_example.domain.WeatherRepository;
 
 import java.util.List;
 
+import javax.inject.Singleton;
+
 import rx.Observable;
 
 /**
@@ -18,7 +20,7 @@ public class WeatherDataRepository implements WeatherRepository{
     private WeatherDataStoreFactory weatherfactory;
     private WeatherMapper weatherMapper;
 
-
+    @Singleton
     public WeatherDataRepository() {
         //weatherfactory = new WeatherDataStoreFactory();
         weatherMapper = new WeatherMapper();
