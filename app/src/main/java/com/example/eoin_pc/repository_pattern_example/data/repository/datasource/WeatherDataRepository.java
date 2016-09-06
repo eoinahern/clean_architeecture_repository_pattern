@@ -1,5 +1,7 @@
 package com.example.eoin_pc.repository_pattern_example.data.repository.datasource;
 
+import android.content.Context;
+
 import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntity;
 import com.example.eoin_pc.repository_pattern_example.data.entity.mapper.WeatherMapper;
 import com.example.eoin_pc.repository_pattern_example.domain.DailyWeather;
@@ -21,8 +23,8 @@ public class WeatherDataRepository implements WeatherRepository{
     private WeatherMapper weatherMapper;
 
     @Singleton
-    public WeatherDataRepository() {
-        //weatherfactory = new WeatherDataStoreFactory();
+    public WeatherDataRepository(Context cont) {
+        weatherfactory = new WeatherDataStoreFactory(cont);
         weatherMapper = new WeatherMapper();
     }
 

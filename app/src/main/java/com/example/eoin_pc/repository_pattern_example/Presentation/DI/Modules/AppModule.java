@@ -1,5 +1,6 @@
 package com.example.eoin_pc.repository_pattern_example.Presentation.DI.Modules;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -20,9 +21,9 @@ import dagger.Provides;
 @Module
 public class AppModule {
 
-    private MyApplication application;
+    private Application application;
 
-    public AppModule(MyApplication appin)
+    public AppModule(Application appin)
     {
         application = appin;
     }
@@ -31,7 +32,7 @@ public class AppModule {
     @Singleton
     public Context getCont()
     {
-        return application;
+        return  application;
     }
 
 
@@ -46,9 +47,9 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public WeatherRepository getRepository(WeatherDataRepository wrepo)
+    public WeatherRepository getRepository(Context cont)
     {
-        return wrepo;
+        return new WeatherDataRepository(cont);
     }
 
 
