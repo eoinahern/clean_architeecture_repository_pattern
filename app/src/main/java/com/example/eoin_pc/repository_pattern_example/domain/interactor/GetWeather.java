@@ -22,11 +22,7 @@ public class GetWeather  extends UseCase {
     }
 
     @Override
-    protected Observable buildUseCaseObservable() {
+    public Observable buildUseCaseObservable() {
        return  weatherrepo.getDailyWeather();
     }
-
-
-
-
 }
