@@ -1,6 +1,7 @@
 package com.example.eoin_pc.repository_pattern_example.domain.interactor;
 
 import rx.Observable;
+import rx.Scheduler;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -14,6 +15,20 @@ public abstract class UseCase {
 
     private Subscription subscription = Subscriptions.empty();
 
+
+    protected Scheduler mainscheduler;
+    protected Scheduler ioscheduler;
+
+
+
+
+
+    public UseCase(Scheduler mainschedulerin, Scheduler ioschedulerin)
+    {
+        mainscheduler = mainschedulerin;
+        ioscheduler = ioschedulerin;
+    }
+
     protected abstract Observable buildUseCaseObservable();
 
     /**
@@ -24,8 +39,8 @@ public abstract class UseCase {
 
     public void execute(Subscriber useCaseSubscriber) {
         this.subscription = this.buildUseCaseObservable()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(ioscheduler)
+                .observeOn(mainscheduler)
                 .subscribe(useCaseSubscriber);
     }
 

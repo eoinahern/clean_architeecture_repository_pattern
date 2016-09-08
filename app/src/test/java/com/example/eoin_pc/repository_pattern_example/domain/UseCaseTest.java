@@ -15,8 +15,14 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import rx.Observable;
+import rx.Scheduler;
 import rx.Subscriber;
 import rx.observers.TestSubscriber;
+import rx.schedulers.TestScheduler;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.mockito.BDDMockito.given;
 
 public class UseCaseTest {
 
@@ -24,46 +30,32 @@ public class UseCaseTest {
     private UseCaseTestClass useCase;
 
     @Mock TestSubscriber testsub;
+    @Mock Scheduler mockmainscheduler;
+    @Mock Scheduler mockioscheduler;
 
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        this.useCase = new UseCaseTestClass();
+        this.useCase = new UseCaseTestClass(mockioscheduler, mockioscheduler);
     }
-
 
     @Test
     public void testExecute()
     {
-
-        //cant  use android.mainthread in testing observables!!!
-        /*TestSubscriber<Integer> testSubscriber = new TestSubscriber<>();
-        useCase.execute(testsub);
-        Assert.assertEquals(testSubscriber.getOnErrorEvents().size(), 0);*/
+        TestSubscriber<Integer> testSubscriber = new TestSubscriber<>();
+        useCase.execute(testSubscriber);
+        useCase.unsubscribe();
+        assertThat(testSubscriber.isUnsubscribed(), is(true));
 
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private static class UseCaseTestClass extends UseCase {
 
-        protected UseCaseTestClass()
+        protected UseCaseTestClass(Scheduler mainshceduler, Scheduler ioscheduler)
         {
-
+            super(mainshceduler, ioscheduler);
         }
 
         @Override protected Observable buildUseCaseObservable() {

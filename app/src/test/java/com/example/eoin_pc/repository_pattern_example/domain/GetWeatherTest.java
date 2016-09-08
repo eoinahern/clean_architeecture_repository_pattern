@@ -13,6 +13,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import rx.Observable;
+import rx.Scheduler;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.times;
@@ -32,6 +33,8 @@ public class GetWeatherTest {
     @Mock private WeatherRepository weatherrepo;
     @Mock private Context cont;
     @Mock Observable obs;
+    @Mock Scheduler mockmainscheduler;
+    @Mock Scheduler mockioscheduler;
 
 
 
@@ -39,7 +42,7 @@ public class GetWeatherTest {
     public void setup()
     {
         MockitoAnnotations.initMocks(this);
-        getweather = new GetWeather(weatherrepo);
+        getweather = new GetWeather(weatherrepo, mockmainscheduler, mockioscheduler);
     }
 
 
@@ -48,7 +51,13 @@ public class GetWeatherTest {
     {
 
         when(weatherrepo.getDailyWeather()).thenReturn(obs);
+
+
+        //execute
         getweather.buildUseCaseObservable();
+
+
+        //assert and verify
         verify(weatherrepo, times(1)).getDailyWeather();
         verifyNoMoreInteractions(weatherrepo);
 
