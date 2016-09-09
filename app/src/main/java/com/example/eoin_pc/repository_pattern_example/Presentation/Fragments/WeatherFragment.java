@@ -4,23 +4,32 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
+import com.example.eoin_pc.repository_pattern_example.MyApplication;
+import com.example.eoin_pc.repository_pattern_example.Presentation.Presenters.WeatherListPresenter;
 import com.example.eoin_pc.repository_pattern_example.R;
 
-public class WeatherFragment extends Fragment {
+import javax.inject.Inject;
+
+public class WeatherFragment extends Fragment implements WeatherFragView{
+
+    @Inject
+    WeatherListPresenter weatherlistpresenter;
 
 
-    private OnFragmentInteractionListener mListener;
+    private ProgressBar progbar;
+
 
     public WeatherFragment() {
-        // Required empty public constructor
     }
 
 
-    public static WeatherFragment newInstance(String param1, String param2) {
+    public static WeatherFragment newInstance() {
         WeatherFragment fragment = new WeatherFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -30,44 +39,56 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((MyApplication) getActivity().getApplication()).getFragComponent().inject(this);
 
 
+        if(weatherlistpresenter == null)
+            Log.d("weather presenter", "its null");
+            else
+            Log.d("not null", "yipeee!!!");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+        weatherlistpresenter.setView(this);
         return inflater.inflate(R.layout.fragment_weather, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
+
+
+        /*if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
-        }
+        }*/
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        //mListener = null;
     }
 
 
-    public  interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    @Override
+    public void SetProgress(boolean visible) {
+
+    }
+
+    @Override
+    public void GetWeather() {
+
+    }
+
+    @Override
+    public void setUPView() {
+
     }
 }
