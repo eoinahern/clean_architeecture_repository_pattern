@@ -14,6 +14,9 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by eoin_a on 31/08/2016.
@@ -51,6 +54,8 @@ public class AppModule {
     {
         return new WeatherDataRepository(cont);
     }
+
+
 
 
 }

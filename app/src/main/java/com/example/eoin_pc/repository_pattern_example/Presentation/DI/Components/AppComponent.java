@@ -10,6 +10,7 @@ import com.example.eoin_pc.repository_pattern_example.domain.WeatherRepository;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import rx.Scheduler;
 
 /**
  * Created by eoin_a on 31/08/2016.
@@ -23,7 +24,7 @@ public interface AppComponent {
 
     //exposed to subgraphs
 
-    Context getCont();
-    SharedPreferences getPrefs();
+    //Context getCont();
+    //SharedPreferences getPrefs();
     WeatherRepository getRepository();
 }
