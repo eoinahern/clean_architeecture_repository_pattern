@@ -10,6 +10,5 @@ import java.util.List;
 public interface WeatherFragView {
 
     void SetProgress(boolean visible);
-    void GetWeather();
     void setUpView(List<DailyWeatherEntity> wlist);
 }

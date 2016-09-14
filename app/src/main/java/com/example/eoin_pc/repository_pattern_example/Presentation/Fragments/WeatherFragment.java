@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,8 +30,7 @@ public class WeatherFragment extends Fragment implements WeatherFragView{
 
     private ProgressBar  progbar;
     private RecyclerView w_recview;
-
-
+    private LinearLayoutManager llmanager;
 
     public WeatherFragment() {
     }
@@ -59,13 +59,22 @@ public class WeatherFragment extends Fragment implements WeatherFragView{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        weatherlistpresenter.setView(this);
+
         View v = inflater.inflate(R.layout.fragment_weather, container, false);
         progbar = (ProgressBar) v.findViewById(R.id.progbar);
         w_recview = (RecyclerView) v.findViewById(R.id.recview);
-
+        setUpRecview();
 
         return v;
+    }
+
+    private void setUpRecview() {
+    }
+
+    @Override public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        weatherlistpresenter.setView(this);
+        weatherlistpresenter.getWeatherDetails();
     }
 
 
@@ -96,11 +105,6 @@ public class WeatherFragment extends Fragment implements WeatherFragView{
             progbar.setVisibility(View.VISIBLE);
 
         progbar.setVisibility(View.INVISIBLE) ;
-    }
-
-    @Override
-    public void GetWeather() {
-        weatherlistpresenter.getWeatherDetails();
     }
 
     @Override
