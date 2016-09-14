@@ -17,7 +17,6 @@ public class MainActivity extends BaseActivity {
 
 
         WeatherFragment frag = WeatherFragment.newInstance();
-
         FragmentManager fragman = getSupportFragmentManager();
         FragmentTransaction fragtrans = fragman.beginTransaction();
         fragtrans.add(R.id.container, frag);

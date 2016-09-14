@@ -15,12 +15,8 @@ public abstract class UseCase {
 
     private Subscription subscription = Subscriptions.empty();
 
-
     protected Scheduler mainscheduler;
     protected Scheduler ioscheduler;
-
-
-
 
 
     public UseCase(Scheduler mainschedulerin, Scheduler ioschedulerin)

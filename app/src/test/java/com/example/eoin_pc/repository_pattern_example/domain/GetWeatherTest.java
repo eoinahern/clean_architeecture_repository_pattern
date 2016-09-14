@@ -26,17 +26,13 @@ import static org.mockito.Mockito.when;
  */
 public class GetWeatherTest {
 
-
     private GetWeather getweather;
-
 
     @Mock private WeatherRepository weatherrepo;
     @Mock private Context cont;
     @Mock Observable obs;
     @Mock Scheduler mockmainscheduler;
     @Mock Scheduler mockioscheduler;
-
-
 
     @Before
     public void setup()
@@ -49,19 +45,14 @@ public class GetWeatherTest {
     @Test
     public void testBuildObservable()
     {
-
         when(weatherrepo.getDailyWeather()).thenReturn(obs);
-
-
         //execute
         getweather.buildUseCaseObservable();
-
-
         //assert and verify
         verify(weatherrepo, times(1)).getDailyWeather();
         verifyNoMoreInteractions(weatherrepo);
 
-        Assert.assertEquals(obs, getweather.buildUseCaseObservable() );
+        Assert.assertEquals(obs, getweather.buildUseCaseObservable());
 
     }
 }

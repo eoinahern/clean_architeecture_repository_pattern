@@ -21,10 +21,8 @@ public interface AppComponent {
 
    void inject(BaseActivity baseact);
 
-
     //exposed to subgraphs
 
-    //Context getCont();
-    //SharedPreferences getPrefs();
+    Context getCont();
     WeatherRepository getRepository();
 }
