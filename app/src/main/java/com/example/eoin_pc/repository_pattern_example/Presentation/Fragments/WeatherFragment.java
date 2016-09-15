@@ -49,10 +49,19 @@ public class WeatherFragment extends Fragment implements WeatherFragView{
         ((MyApplication) getActivity().getApplication()).getFragComponent().inject(this);
 
 
+        llmanager = new LinearLayoutManager(context());
+
+
         if(weatherlistpresenter == null   ||  weatheradpt == null  )
             Log.d("weather presenter", "its null");
             else
             Log.d("not null", "yipeee!!!");
+    }
+
+
+    public Context context()
+    {
+        return getActivity().getApplicationContext();
     }
 
     @Override
@@ -68,8 +77,15 @@ public class WeatherFragment extends Fragment implements WeatherFragView{
         return v;
     }
 
+
+
     private void setUpRecview() {
+        w_recview.setLayoutManager(llmanager);
+        w_recview.setAdapter(weatheradpt);
     }
+
+
+
 
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
