@@ -14,10 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
-
-
 import rx.Subscriber;
-import rx.observers.TestSubscriber;
 
 
 /**
@@ -26,26 +23,28 @@ import rx.observers.TestSubscriber;
 @RunWith(AndroidJUnit4.class)
 public class WeatherListPresenterTest {
 
-
     private WeatherListPresenter weatherpresenter;
     private Context cont;
     private  UseCase mockgetweather;
     private WeatherFragView mockweatherview;
-    private TestSubscriber testSubscriber;
 
 
     @Before
     public void setUp()
     {
        // MockitoAnnotations.initMocks(this); null pointer thrown here?
-        
+
         mockweatherview = mock(WeatherFragView.class);
         mockgetweather = mock(UseCase.class);
-        testSubscriber = mock(TestSubscriber.class);
         cont =  InstrumentationRegistry.getContext();
         weatherpresenter = new WeatherListPresenter(mockgetweather);
         weatherpresenter.setView(mockweatherview);
     }
+
+    /**
+     * only testable method. all others called from inside
+     * the nested subscriber.
+     */
 
 
     @Test

@@ -17,7 +17,7 @@ import rx.Observable;
 
 public class RestAPICallsImp  {
 
-    private String BASE_URL =  "https://api.forecast.io/forecast/63f0914cdd082e76d25b40161cbe70c4";
+    private String BASE_URL =  "https://api.forecast.io/forecast/63f0914cdd082e76d25b40161cbe70c4/";
     private  Retrofit retrofit;
     private RestAPICalls restapicalls;
 

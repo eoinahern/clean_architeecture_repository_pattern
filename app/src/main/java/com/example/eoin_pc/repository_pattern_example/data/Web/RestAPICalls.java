@@ -14,6 +14,6 @@ import retrofit2.http.Path;
 public interface RestAPICalls {
     String BASE_URL =  "https://api.forecast.io/forecast/63f0914cdd082e76d25b40161cbe70c4";
 
-    @GET("/{lat},{lon}")
+    @GET("{lat},{lon}")
     Call<List<DailyWeatherEntity>> getDailyWeather(@Path("lat") double lat, @Path("lon") double longit);
 }
