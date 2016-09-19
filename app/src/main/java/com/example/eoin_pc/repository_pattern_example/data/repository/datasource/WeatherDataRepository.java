@@ -9,6 +9,7 @@ import com.example.eoin_pc.repository_pattern_example.domain.WeatherRepository;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import rx.Observable;
@@ -16,16 +17,17 @@ import rx.Observable;
 /**
  * Created by eoin_pc on 08/08/2016.
  */
+@Singleton
 public class WeatherDataRepository implements WeatherRepository{
 
 
     private WeatherDataStoreFactory weatherfactory;
     private WeatherMapper weatherMapper;
 
-    @Singleton
-    public WeatherDataRepository(Context cont) {
-        weatherfactory = new WeatherDataStoreFactory(cont);
-        weatherMapper = new WeatherMapper();
+    @Inject
+    public WeatherDataRepository(WeatherDataStoreFactory factin, WeatherMapper mapin) {
+        weatherfactory =  factin;
+        weatherMapper = mapin;
     }
 
     @Override

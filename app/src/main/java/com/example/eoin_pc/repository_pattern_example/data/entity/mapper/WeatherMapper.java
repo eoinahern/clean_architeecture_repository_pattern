@@ -6,11 +6,14 @@ import com.example.eoin_pc.repository_pattern_example.domain.DailyWeather;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by eoin_a on 26/08/2016.
  */
 public class WeatherMapper {
 
+    @Inject
     public WeatherMapper()
     {
     }

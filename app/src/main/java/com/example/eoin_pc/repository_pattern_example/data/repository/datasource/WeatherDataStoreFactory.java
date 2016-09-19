@@ -4,14 +4,20 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
  * Created by eoin_pc on 08/08/2016.
  */
+@Singleton
 public class WeatherDataStoreFactory {
 
     //injects cont into factory in example ive seen!!!
     private Context cont;
 
+
+    @Inject
     public WeatherDataStoreFactory(Context context)
     {
         cont = context.getApplicationContext();

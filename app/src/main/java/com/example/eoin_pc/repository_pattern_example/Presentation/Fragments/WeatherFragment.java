@@ -38,8 +38,6 @@ public class WeatherFragment extends Fragment implements WeatherFragView{
 
     public static WeatherFragment newInstance() {
         WeatherFragment fragment = new WeatherFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -90,7 +88,7 @@ public class WeatherFragment extends Fragment implements WeatherFragView{
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         weatherlistpresenter.setView(this);
-        weatherlistpresenter.getWeatherDetails();
+        /*weatherlistpresenter.getWeatherDetails();*/
     }
 
 

@@ -10,6 +10,7 @@ import com.example.eoin_pc.repository_pattern_example.domain.WeatherRepository;
 
 import android.preference.PreferenceManager;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -33,6 +34,7 @@ public class AppModule {
 
     @Provides
     @Singleton
+    @Named("cont")
     public Context getCont()
     {
         return  application;
@@ -50,9 +52,9 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public WeatherRepository getRepository(Context cont)
+    public WeatherRepository getRepository(WeatherDataRepository wdr)
     {
-        return new WeatherDataRepository(cont);
+        return wdr;
     }
 
 

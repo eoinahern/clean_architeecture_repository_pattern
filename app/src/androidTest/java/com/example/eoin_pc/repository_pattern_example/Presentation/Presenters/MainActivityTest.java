@@ -1,15 +1,20 @@
 package com.example.eoin_pc.repository_pattern_example.Presentation.Presenters;
+import android.app.Instrumentation;
+import android.os.Bundle;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 
 import com.example.eoin_pc.repository_pattern_example.MainActivity;
+
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-
+import org.mockito.Mockito;
 
 
 /**
@@ -19,16 +24,28 @@ import org.junit.runner.RunWith;
 public class MainActivityTest
 {
 
+
+    MainActivity maiact;
+
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
             MainActivity.class);
 
 
-    @Test
-    public void test()
-    {
 
+    @Before
+    public void setup()
+    {
+       maiact =  mActivityRule.getActivity();
     }
+
+
+    @Test
+    public void testNotNull()
+    {
+        Assert.assertNotNull(maiact);
+    }
+
 
 
 }
