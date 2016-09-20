@@ -54,7 +54,7 @@ public class WeatherDataStoreFactory {
      * @return
      */
 
-    private boolean checkConnected()
+    public boolean checkConnected()
     {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) cont.getSystemService(Context.CONNECTIVITY_SERVICE);

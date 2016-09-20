@@ -8,7 +8,6 @@ import com.example.eoin_pc.repository_pattern_example.Presentation.DI.Components
 import com.example.eoin_pc.repository_pattern_example.Presentation.DI.Components.DaggerFragComponent;
 import com.example.eoin_pc.repository_pattern_example.Presentation.DI.Components.FragComponent;
 import com.example.eoin_pc.repository_pattern_example.Presentation.DI.Modules.AppModule;
-import com.example.eoin_pc.repository_pattern_example.Presentation.DI.Modules.FragModule;
 
 /**
  * Created by eoin_a on 31/08/2016.

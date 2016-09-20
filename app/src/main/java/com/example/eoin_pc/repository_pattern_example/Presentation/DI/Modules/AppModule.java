@@ -34,7 +34,6 @@ public class AppModule {
 
     @Provides
     @Singleton
-    @Named("cont")
     public Context getCont()
     {
         return  application;
