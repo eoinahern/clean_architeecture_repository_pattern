@@ -51,6 +51,8 @@ public class WeatherRepoTest {
         wdrepo = new WeatherDataRepository(mockwdsfactory, mockmapper);
     }
 
+
+
     @Test
     public void testGetDailyWeather()
     {
@@ -66,7 +68,21 @@ public class WeatherRepoTest {
         verify(mockwdsfactory).getDataStore();
         verify(wdstore).getWeatherList();
 
-
         Assert.assertNotNull(dw);
+    }
+
+    @Test
+    public void testSave()
+    {
+        given(mockwdsfactory.getDiskDataStore()).willReturn(wdstore);
+
+        //execute
+        wdrepo.saveDailyWeather(observable);
+
+        //assert/verify
+        verify(mockwdsfactory).getDiskDataStore();
+        verify(wdstore).saveWeatherData(observable);
+
+
     }
 }
