@@ -6,6 +6,8 @@ import android.net.NetworkInfo;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.example.eoin_pc.repository_pattern_example.MyApplication;
+import com.example.eoin_pc.repository_pattern_example.data.repository.datasource.WeatherDataStore;
 import com.example.eoin_pc.repository_pattern_example.data.repository.datasource.WeatherDataStoreFactory;
 
 import org.junit.Assert;
@@ -19,6 +21,7 @@ import org.mockito.MockitoAnnotations;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -34,6 +37,7 @@ public class WeatherDataStoreFactoryTest {
     private Context cont;
     private ConnectivityManager mockconmanager;
     private NetworkInfo networkinfo;
+    private MyApplication app;
 
 
     @Before
@@ -41,20 +45,30 @@ public class WeatherDataStoreFactoryTest {
     {
         cont  = mock(Context.class);
         mockconmanager = mock(ConnectivityManager.class);
+        app = mock(MyApplication.class);
         networkinfo = mock(NetworkInfo.class);
 
-        wdstorefactory = new WeatherDataStoreFactory(cont);
 
+        given(cont.getApplicationContext()).willReturn(app);
+        wdstorefactory = new WeatherDataStoreFactory(cont);
     }
 
 
     @Test
     public void testgetDataStore()
     {
+        when(app.getSystemService(Context.CONNECTIVITY_SERVICE)).thenReturn(mockconmanager);
+        when(mockconmanager.getActiveNetworkInfo()).thenReturn(networkinfo);
+        when(networkinfo.isConnected()).thenReturn(true);
 
-        given(cont.getSystemService(Context.CONNECTIVITY_SERVICE)).willReturn(mockconmanager);
-        given(mockconmanager.getActiveNetworkInfo()).willReturn(networkinfo);
 
-        Assert.assertNotNull(wdstorefactory.getDataStore());
+        WeatherDataStore wds = wdstorefactory.getDataStore();
+
+
+        verify(app).getSystemService(Context.CONNECTIVITY_SERVICE);
+        verify(mockconmanager).getActiveNetworkInfo();
+        verify(networkinfo).isConnected();
+
+        Assert.assertNotNull(wds);
     }
 }
