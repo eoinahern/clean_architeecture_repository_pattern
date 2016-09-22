@@ -35,7 +35,7 @@ public class RestAPICallsImp  {
 
     public Observable<List<DailyWeatherEntity>> getWeatherList() {
 
-        Call call = restapicalls.getDailyWeather(53.3441, -6.2675);
+        Call call = restapicalls.getDailyWeather("53.3441", "-6.2675");
         return Observable.create(subscriber -> {
 
             call.enqueue(new Callback() {
@@ -51,7 +51,7 @@ public class RestAPICallsImp  {
 
                 @Override
                 public void onFailure(Call call, Throwable t) {
-                    subscriber.onError(new Resources.NotFoundException());
+                    subscriber.onError(t);
                 }
             });
         });

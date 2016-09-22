@@ -2,6 +2,7 @@ package com.example.eoin_pc.repository_pattern_example.Presentation.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,9 @@ public class WeatherRecviewAdpt extends RecyclerView.Adapter<WeatherRecviewAdpt.
 
     public void updateList(List<DailyWeatherEntity> weatherlistin)
     {
+
+        Log.d("update List called", "update");
+        Log.d("list length", String.valueOf(weatherlistin.size()));
         weatherlist = weatherlistin;
         this.notifyDataSetChanged();
     }

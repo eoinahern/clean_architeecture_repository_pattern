@@ -46,9 +46,7 @@ public class WeatherFragment extends Fragment implements WeatherFragView{
         super.onCreate(savedInstanceState);
         ((MyApplication) getActivity().getApplication()).getFragComponent().inject(this);
 
-
         llmanager = new LinearLayoutManager(context());
-
 
         if(weatherlistpresenter == null   ||  weatheradpt == null  )
             Log.d("weather presenter", "its null");
@@ -87,8 +85,11 @@ public class WeatherFragment extends Fragment implements WeatherFragView{
 
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Log.d("created", "viewcreated");
         weatherlistpresenter.setView(this);
         weatherlistpresenter.getWeatherDetails();
+
     }
 
 
@@ -123,6 +124,9 @@ public class WeatherFragment extends Fragment implements WeatherFragView{
 
     @Override
     public void setUpView(List<DailyWeatherEntity> wlist) {
+
+
+
         weatheradpt.updateList(wlist);
     }
 
