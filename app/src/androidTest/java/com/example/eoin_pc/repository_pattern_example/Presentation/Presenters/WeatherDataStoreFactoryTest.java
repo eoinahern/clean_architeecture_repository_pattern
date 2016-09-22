@@ -3,7 +3,6 @@ package com.example.eoin_pc.repository_pattern_example.Presentation.Presenters;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.example.eoin_pc.repository_pattern_example.MyApplication;
@@ -14,12 +13,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -70,5 +64,11 @@ public class WeatherDataStoreFactoryTest {
         verify(networkinfo).isConnected();
 
         Assert.assertNotNull(wds);
+    }
+
+    @Test
+    public void testGetDiskDataStore()
+    {
+        Assert.assertNotNull(wdstorefactory.getDiskDataStore());
     }
 }

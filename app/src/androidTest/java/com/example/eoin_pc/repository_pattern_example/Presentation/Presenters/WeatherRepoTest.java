@@ -23,7 +23,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 /**
- * Created by eoin_pc on 20/09/2016.
+ *  having issues with initializing mocks
+ *  in androidTest Folder exception thrown when call
+ *  MockitoAnnotations.initMocks(this);
  */
 @RunWith(AndroidJUnit4.class)
 public class WeatherRepoTest {

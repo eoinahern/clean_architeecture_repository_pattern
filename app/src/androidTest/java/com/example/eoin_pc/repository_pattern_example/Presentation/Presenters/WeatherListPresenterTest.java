@@ -52,7 +52,6 @@ public class WeatherListPresenterTest {
     {
         given(mockweatherview.context()).willReturn(cont);
 
-
         //execute
         weatherpresenter.getWeatherDetails();
         Mockito.verify(mockgetweather).execute(Mockito.any(Subscriber.class));
