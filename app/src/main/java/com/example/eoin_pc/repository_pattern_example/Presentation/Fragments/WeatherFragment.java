@@ -88,7 +88,7 @@ public class WeatherFragment extends Fragment implements WeatherFragView{
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         weatherlistpresenter.setView(this);
-        /*weatherlistpresenter.getWeatherDetails();*/
+        weatherlistpresenter.getWeatherDetails();
     }
 
 
@@ -125,6 +125,5 @@ public class WeatherFragment extends Fragment implements WeatherFragView{
     public void setUpView(List<DailyWeatherEntity> wlist) {
         weatheradpt.updateList(wlist);
     }
-
 
 }

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.eoin_pc.repository_pattern_example.R;
 import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntity;
@@ -37,14 +38,15 @@ public class WeatherRecviewAdpt extends RecyclerView.Adapter<WeatherRecviewAdpt.
 
         View v = inflater.inflate(R.layout.weather_recview_row, parent, false);
         return  new ViewHolder(v);
-
     }
 
 
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder h, int pos) {
 
+        DailyWeatherEntity  weatheritem = weatherlist.get(pos);
+        h.forecasttxt.setText(weatheritem.getSummary());
     }
 
     public void updateList(List<DailyWeatherEntity> weatherlistin)
@@ -63,8 +65,11 @@ public class WeatherRecviewAdpt extends RecyclerView.Adapter<WeatherRecviewAdpt.
     public class ViewHolder  extends  RecyclerView.ViewHolder{
 
 
-        public ViewHolder(View itemView) {
-            super(itemView);
+       public TextView forecasttxt;
+
+        public ViewHolder(View v) {
+            super(v);
+            forecasttxt = (TextView)  v.findViewById(R.id.forecast);
         }
     }
 

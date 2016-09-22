@@ -46,7 +46,6 @@ public class WeatherListPresenterTest {
      * the nested subscriber.
      */
 
-
     @Test
     public void testGetWeatherList()
     {
