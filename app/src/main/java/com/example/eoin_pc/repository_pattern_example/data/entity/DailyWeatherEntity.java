@@ -12,6 +12,7 @@ public class DailyWeatherEntity {
 
 
     public DailyWeatherEntity() {
+
     }
 
     public String getSummary() {
@@ -170,9 +171,5 @@ public class DailyWeatherEntity {
 
     @SerializedName("temperatureMaxTime")
     private int temperatureMaxTime;
-
-
-
-
 
 }

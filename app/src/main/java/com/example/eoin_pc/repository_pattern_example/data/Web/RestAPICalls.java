@@ -1,6 +1,7 @@
 package com.example.eoin_pc.repository_pattern_example.data.Web;
 
 import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntity;
+import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntityList;
 
 import java.util.List;
 

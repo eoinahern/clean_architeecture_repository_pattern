@@ -4,6 +4,9 @@ import android.content.res.Resources;
 import android.util.Log;
 
 import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntity;
+import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntityList;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +45,12 @@ public class RestAPICallsImp  {
                 @Override
                 public void onResponse(Call call, Response response) {
                     if (response.isSuccessful()) {
-                        subscriber.onNext((List<DailyWeatherEntity>) response.body());
-                        subscriber.onCompleted();
+
+
+                      DailyWeatherEntityList entlist = (DailyWeatherEntityList) response.body();
+
+                        // subscriber.onNext((List<DailyWeatherEntity>) response.body());
+                        //subscriber.onCompleted();
                     } else {
                         subscriber.onError(new Resources.NotFoundException());
                     }
