@@ -3,6 +3,7 @@ package com.example.eoin_pc.repository_pattern_example.Presentation.Fragments;
 import android.content.Context;
 
 import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntity;
+import com.example.eoin_pc.repository_pattern_example.domain.DailyWeather;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ public interface WeatherFragView {
 
     void SetProgress(boolean visible);
     Context context();
-    void setUpView(List<DailyWeatherEntity> wlist);
+    void setUpView(List<DailyWeather> wlist);
 }

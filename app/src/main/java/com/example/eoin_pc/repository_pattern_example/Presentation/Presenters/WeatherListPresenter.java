@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.eoin_pc.repository_pattern_example.Presentation.Fragments.WeatherFragView;
 import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntity;
+import com.example.eoin_pc.repository_pattern_example.domain.DailyWeather;
 import com.example.eoin_pc.repository_pattern_example.domain.interactor.GetWeather;
 import com.example.eoin_pc.repository_pattern_example.domain.interactor.UseCase;
 
@@ -41,7 +42,7 @@ public class WeatherListPresenter implements Presenter {
         getweatherusecase.execute(new WeatherSubscriber());
     }
 
-    class WeatherSubscriber extends Subscriber<List<DailyWeatherEntity>>
+    class WeatherSubscriber extends Subscriber<List<DailyWeather>>
     {
         @Override
         public void onCompleted()
@@ -58,7 +59,7 @@ public class WeatherListPresenter implements Presenter {
         }
 
         @Override
-        public void onNext(List<DailyWeatherEntity> dailyWeatherEntities) {
+        public void onNext(List<DailyWeather> dailyWeatherEntities) {
             Log.d("weather len", String.valueOf(dailyWeatherEntities.size()));
             weatherview.setUpView(dailyWeatherEntities);
         }

@@ -51,8 +51,8 @@ public class RestAPICallsImp  {
                         System.out.println(entlist.getDailyObj().getdailywlist().get(0).getSummary());
                         System.out.println(entlist.getDailyObj().getdailywlist().toString());
 
-                        //subscriber.onNext(entlist.getDailyObj().getdailywlist());
-                        //subscriber.onCompleted();
+                        subscriber.onNext(entlist.getDailyObj().getdailywlist());
+                        subscriber.onCompleted();
 
 
                     } else {

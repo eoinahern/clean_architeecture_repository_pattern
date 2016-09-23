@@ -17,6 +17,7 @@ import com.example.eoin_pc.repository_pattern_example.Presentation.Adapters.Weat
 import com.example.eoin_pc.repository_pattern_example.Presentation.Presenters.WeatherListPresenter;
 import com.example.eoin_pc.repository_pattern_example.R;
 import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntity;
+import com.example.eoin_pc.repository_pattern_example.domain.DailyWeather;
 
 import java.util.List;
 
@@ -123,10 +124,7 @@ public class WeatherFragment extends Fragment implements WeatherFragView{
     }
 
     @Override
-    public void setUpView(List<DailyWeatherEntity> wlist) {
-
-
-
+    public void setUpView(List<DailyWeather> wlist) {
         weatheradpt.updateList(wlist);
     }
 

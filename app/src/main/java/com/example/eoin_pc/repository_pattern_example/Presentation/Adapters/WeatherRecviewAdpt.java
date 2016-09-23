@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.eoin_pc.repository_pattern_example.R;
 import com.example.eoin_pc.repository_pattern_example.data.entity.DailyWeatherEntity;
+import com.example.eoin_pc.repository_pattern_example.domain.DailyWeather;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +22,7 @@ import javax.inject.Inject;
  */
 public class WeatherRecviewAdpt extends RecyclerView.Adapter<WeatherRecviewAdpt.ViewHolder>{
 
-    private List<DailyWeatherEntity> weatherlist;
+    private List<DailyWeather> weatherlist;
     private Context cont;
     private LayoutInflater inflater;
 
@@ -46,11 +47,13 @@ public class WeatherRecviewAdpt extends RecyclerView.Adapter<WeatherRecviewAdpt.
     @Override
     public void onBindViewHolder(ViewHolder h, int pos) {
 
-        DailyWeatherEntity  weatheritem = weatherlist.get(pos);
+        DailyWeather weatheritem = weatherlist.get(pos);
+        weatherlist.get(pos);
+
         h.forecasttxt.setText(weatheritem.getSummary());
     }
 
-    public void updateList(List<DailyWeatherEntity> weatherlistin)
+    public void updateList(List<DailyWeather> weatherlistin)
     {
 
         Log.d("update List called", "update");
