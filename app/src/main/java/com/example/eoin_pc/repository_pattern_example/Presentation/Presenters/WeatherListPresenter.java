@@ -34,6 +34,13 @@ public class WeatherListPresenter implements Presenter {
         weatherview = weatherviewin;
     }
 
+
+    public void destroy()
+    {
+        getweatherusecase.unsubscribe();
+        weatherview = null;
+    }
+
     public void getWeatherDetails()
     {
         Log.d("get weather", "get weather");
