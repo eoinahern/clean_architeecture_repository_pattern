@@ -2,12 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.eoin_pc.repository_pattern_example.Presentation.Fragments.WeatherFragment">
+    tools:context="com.example.eoin_pc.repository_pattern_example.Presentation.Fragments.WeatherFragment"
+    android:layout_marginBottom="10dp">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recview">
+        android:id="@+id/recview"
+        android:paddingBottom="10dp">
 
     </android.support.v7.widget.RecyclerView>
 

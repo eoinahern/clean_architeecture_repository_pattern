@@ -29,7 +29,6 @@ public class WeatherListPresenter implements Presenter {
         getweatherusecase = getweather;
     }
 
-
     public void setView(WeatherFragView weatherviewin)
     {
         weatherview = weatherviewin;
