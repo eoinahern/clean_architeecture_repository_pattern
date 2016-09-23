@@ -9,23 +9,23 @@ import java.util.List;
  */
 public class DailyWeatherEntityList {
 
-    @SerializedName("data")
-    public List<DailyWeatherEntity> weatherlist;
+    @SerializedName("daily")
+    public DailyObj dailyobj;
 
-    public DailyWeatherEntityList(List<DailyWeatherEntity> weatherlistin)
+    public DailyWeatherEntityList( DailyObj dailyobjin)
     {
-        this.weatherlist = weatherlistin;
+        dailyobj = dailyobjin;
     }
 
 
-    public   List<DailyWeatherEntity> getWeatherList()
+    public  DailyObj  getDailyObj()
     {
-        return weatherlist;
+        return  dailyobj;
     }
 
-    public void setWeatherList(List<DailyWeatherEntity> weatherlistin)
+    public void setWeatherList( DailyObj dailyobjin)
     {
-        this.weatherlist = weatherlistin;
+        dailyobj = dailyobjin;
     }
 
 }

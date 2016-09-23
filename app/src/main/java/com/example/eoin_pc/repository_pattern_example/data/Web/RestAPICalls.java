@@ -16,5 +16,5 @@ public interface RestAPICalls {
 
 
     @GET("{lat},{lon}")
-    Call<List<DailyWeatherEntity>> getDailyWeather(@Path("lat") String lat, @Path("lon") String longit);
+    Call<DailyWeatherEntityList> getDailyWeather(@Path("lat") String lat, @Path("lon") String longit);
 }

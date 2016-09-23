@@ -48,9 +48,13 @@ public class RestAPICallsImp  {
 
 
                       DailyWeatherEntityList entlist = (DailyWeatherEntityList) response.body();
+                        System.out.println(entlist.getDailyObj().getdailywlist().get(0).getSummary());
+                        System.out.println(entlist.getDailyObj().getdailywlist().toString());
 
-                        // subscriber.onNext((List<DailyWeatherEntity>) response.body());
+                        //subscriber.onNext(entlist.getDailyObj().getdailywlist());
                         //subscriber.onCompleted();
+
+
                     } else {
                         subscriber.onError(new Resources.NotFoundException());
                     }
@@ -62,8 +66,6 @@ public class RestAPICallsImp  {
                 }
             });
         });
-
-
     }
 
 }
