@@ -40,9 +40,8 @@ public abstract class UseCase {
                 .subscribe(useCaseSubscriber);
     }
 
-
     public void unsubscribe() {
-        if (!subscription.isUnsubscribed()) {
+        if (subscription != null && !subscription.isUnsubscribed()) {
             subscription.unsubscribe();
         }
     }

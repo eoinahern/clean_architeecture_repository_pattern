@@ -59,6 +59,7 @@ public class WeatherListPresenter implements Presenter {
         @Override
         public void onError(Throwable e) {
             // show error in the view
+
             Log.d("error", "error in subscriber!");
             e.printStackTrace();
             System.out.println(e.getMessage());
