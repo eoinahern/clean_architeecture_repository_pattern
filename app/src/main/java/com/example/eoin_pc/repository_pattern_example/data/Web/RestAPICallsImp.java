@@ -37,11 +37,16 @@ public class RestAPICallsImp  {
         restapicalls = retrofit.create(RestAPICalls.class);
     }
 
+    /**could iject our restapicalls here
+     * which would allow testing of the method
+     *
+     * @return
+     */
 
     public Observable<List<DailyWeatherEntity>> getWeatherList() {
 
 
-        return restapicalls.getDailyWeather("53.3441", "-6.2675").map(item -> item.getDailyObj().getdailywlist());
+        return  Observable.defer(()->(restapicalls.getDailyWeather("53.3441", "-6.2675")).map(item -> item.getDailyObj().getdailywlist()));
 
         //List<DailyWeatherEntity> ent = new ArrayList<>();
 
