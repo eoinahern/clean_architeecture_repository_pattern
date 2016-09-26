@@ -8,6 +8,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import rx.Observable;
 
 /**
  * Created by eoin_pc on 08/08/2016.
@@ -16,5 +17,5 @@ public interface RestAPICalls {
 
 
     @GET("{lat},{lon}")
-    Call<DailyWeatherEntityList> getDailyWeather(@Path("lat") String lat, @Path("lon") String longit);
+    Observable<DailyWeatherEntityList> getDailyWeather(@Path("lat") String lat, @Path("lon") String longit);
 }

@@ -15,6 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
@@ -30,6 +31,7 @@ public class RestAPICallsImp  {
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
 
         restapicalls = retrofit.create(RestAPICalls.class);
@@ -38,7 +40,14 @@ public class RestAPICallsImp  {
 
     public Observable<List<DailyWeatherEntity>> getWeatherList() {
 
-        Call call = restapicalls.getDailyWeather("53.3441", "-6.2675");
+
+        return restapicalls.getDailyWeather("53.3441", "-6.2675").map(item -> item.getDailyObj().getdailywlist());
+
+        //List<DailyWeatherEntity> ent = new ArrayList<>();
+
+        //return Observable.just(ent);
+
+        /*Call call = restapicalls.getDailyWeather("53.3441", "-6.2675");
         return Observable.create(subscriber -> {
 
             call.enqueue(new Callback() {
@@ -47,7 +56,7 @@ public class RestAPICallsImp  {
                     if (response.isSuccessful()) {
 
 
-                      DailyWeatherEntityList entlist = (DailyWeatherEntityList) response.body();
+                        DailyWeatherEntityList entlist = (DailyWeatherEntityList) response.body();
                         System.out.println(entlist.getDailyObj().getdailywlist().get(0).getSummary());
                         System.out.println(entlist.getDailyObj().getdailywlist().toString());
 
@@ -66,6 +75,8 @@ public class RestAPICallsImp  {
                 }
             });
         });
+    }*/
+
     }
 
 }
