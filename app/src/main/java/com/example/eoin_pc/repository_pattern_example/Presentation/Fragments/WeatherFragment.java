@@ -113,6 +113,13 @@ public class WeatherFragment extends Fragment implements WeatherFragView{
         //mListener = null;
     }
 
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        weatherlistpresenter.destroy();
+    }
+
 
     @Override
     public void SetProgress(boolean visible) {
